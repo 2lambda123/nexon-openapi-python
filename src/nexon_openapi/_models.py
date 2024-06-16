@@ -269,7 +269,7 @@ def is_basemodel(type_: type) -> bool:
 
         return False
 
-    return issubclass(origin, BaseModel) or issubclass(origin, GenericModel)
+    return issubclass(origin, (BaseModel, GenericModel))
 
 
 class FinalRequestOptionsInput(TypedDict, total=False):

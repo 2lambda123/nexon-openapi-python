@@ -5,7 +5,6 @@ import email
 import email.utils
 import json
 import logging
-from random import random
 import time
 from types import TracebackType
 from typing import (
@@ -42,6 +41,7 @@ from ._compat import model_dump
 from ._qs import Querystring
 from ._response import APIResponse
 from ._exceptions import APIConnectionError, APIStatusError, APITimeoutError
+import secrets
 
 try:
     from httpx._config import DEFAULT_TIMEOUT_CONFIG as HTTPX_DEFAULT_TIMEOUT
@@ -280,7 +280,7 @@ class BaseClient(Generic[_HttpxClientT]):
         sleep_seconds = min(initial_retry_delay * pow(2.0, nb_retries), max_retry_delay)
 
         # Apply some jitter, plus-or-minus half a second.
-        jitter = 1 - 0.25 * random()
+        jitter = 1 - 0.25 * secrets.SystemRandom().random()
         timeout = sleep_seconds * jitter
         return timeout if timeout >= 0 else 0
 

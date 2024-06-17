@@ -117,7 +117,7 @@ class APIResponse(Generic[R]):
             # the response class ourselves but that is something that should be supported directly in httpx
             # as it would be easy to incorrectly construct the Response object due to the multitude of arguments.
             if cast_to != httpx.Response:
-                raise ValueError(f"Subclasses of httpx.Response cannot be passed to `cast_to`")
+                raise ValueError("Subclasses of httpx.Response cannot be passed to `cast_to`")
             return cast(R, response)
 
         # The check here is necessary as we are subverting the the type system

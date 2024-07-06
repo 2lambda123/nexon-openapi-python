@@ -525,8 +525,9 @@ class SyncAPIClient(BaseClient[httpx.Client]):
         path: str,
         cast_to: Type[ResponseT],
         body: Optional[Body] = None,
-        options: RequestOptions = {},
+        options: Optional[RequestOptions] = None,
     ) -> ResponseT:
+        options = {} if options is None else options
         opts = FinalRequestOptions.construct(method="post", url=path, json_data=body, **options)
         return self.request(cast_to=cast_to, options=opts)
 
@@ -535,8 +536,9 @@ class SyncAPIClient(BaseClient[httpx.Client]):
         path: str,
         cast_to: Type[ResponseT],
         body: Optional[Body] = None,
-        options: RequestOptions = {},
+        options: Optional[RequestOptions] = None,
     ) -> ResponseT:
+        options = {} if options is None else options
         opts = FinalRequestOptions.construct(method="patch", url=path, json_data=body, **options)
         return self.request(cast_to=cast_to, options=opts)
 
@@ -545,8 +547,9 @@ class SyncAPIClient(BaseClient[httpx.Client]):
         path: str,
         cast_to: Type[ResponseT],
         body: Optional[Body] = None,
-        options: RequestOptions = {},
+        options: Optional[RequestOptions] = None,
     ) -> ResponseT:
+        options = {} if options is None else options
         opts = FinalRequestOptions.construct(method="put", url=path, json_data=body, **options)
         return self.request(cast_to=cast_to, options=opts)
 
@@ -555,8 +558,9 @@ class SyncAPIClient(BaseClient[httpx.Client]):
         path: str,
         cast_to: Type[ResponseT],
         body: Optional[Body] = None,
-        options: RequestOptions = {},
+        options: Optional[RequestOptions] = None,
     ) -> ResponseT:
+        options = {} if options is None else options
         opts = FinalRequestOptions.construct(method="delete", url=path, json_data=body, **options)
         return self.request(cast_to=cast_to, options=opts)
 
